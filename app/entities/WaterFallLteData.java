@@ -10,7 +10,7 @@ import javax.persistence.Table;
  * Created by Dost Muhammad on 3/8/2018.
  */
 @Entity
-@Table(name="waterfall_lte_data")
+@Table(name="_lte_data")
 public class WaterFallLteData extends Model {
     @Id
     private int id;
@@ -810,4 +810,6 @@ public class WaterFallLteData extends Model {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    public static final Finder<Integer, WaterFallLteData> find = new Finder<>(WaterFallLteData.class);
 }

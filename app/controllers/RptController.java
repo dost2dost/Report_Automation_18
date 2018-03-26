@@ -7,6 +7,8 @@ import com.avaje.ebean.Ebean;
 import com.avaje.ebean.SqlRow;
 import com.avaje.ebean.annotation.Formula;
 import entities.TV;
+import entities.WaterFall_LteData;
+import play.Logger;
 import play.mvc.Controller;
 import play.mvc.Result;
 
@@ -27,7 +29,8 @@ public class RptController extends Controller {
     public Result EXQ() {
 
         boolean b=false;
-        List<TV> tasks = TV.find.all();
+        List<TV> lstTVAll = TV.find.all();
+        List<WaterFall_LteData> lstWFAll_All = WaterFall_LteData.find.all();
         TV anyTask = TV.find.byId(6600);
         List<TV> cocoTasks = TV.find.query().where()
                 .ilike("pacenumber", "%MRLOS033927%")
@@ -44,25 +47,28 @@ public class RptController extends Controller {
                 .findList()
                 ;
 
+        Logger.info("Hello");
+
         String sql = "select pacenumber as cnt from enmt3_truf_vendor_tim_kurtz";
         List<SqlRow> row = Ebean.createSqlQuery(sql)
                 .findList();
 
+        boolean bb=false;
+
+       /* int pacno=0;
 
 
 
-
-
-        System.out.println(list);
-
-
-
-
-        String count = String.valueOf(row.get(2),row.get());
+        for(TV tv:lstTVAll){
+        }*/
 
 
 
-        return ok("testing123"+"    "+count);
+       // String count = String.valueOf(row.get(2),row.get());
+
+
+
+        return ok("Size of the list +"+lstTVAll.size()+"");
     }
     public Result saveTurfVendor() {
         List<TV> lstTV=new ArrayList<>();
